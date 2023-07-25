@@ -1,40 +1,28 @@
-import React, { useRef } from 'react';
+import React  from 'react';
 import { Divider, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import { View, Animated } from "react-native";
+import { View, Text } from "react-native";
 import { CardScreenProps} from '../types/types';
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import { PanGestureHandler } from 'react-native-gesture-handler';
+//import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import BottomSheetComponent from '../components/BottomSheetComponent';
 
 
-// Define BackIcon component in the TopNavigationAction component
+// Renders Icon, associated with top navigation action component
 const BackIcon = (props: any) => (
   <Icon {...props} name='arrow-back' />
 );
 
 
-// Define CardScreen 
-const CardScreen = ({navigation, route}: CardScreenProps) => {
+const CardScreen = ({ navigation, route}: CardScreenProps) => {
   const { card, index } = route.params;
-  // For the animated view
-  const translateY = useRef(new Animated.Value(0)).current;
+ 
 
-
-  // Define onGestureEvent function for the PanGestureHandler
-  const onGestureEvent = Animated.event(
-    [{ nativeEvent: { translationY: translateY } }],
-    { useNativeDriver: true }
-  );
-
-
-
-
-// Define navigateBack function for the TopNavigationAction
+// Defines a go back function. Associated with top navigation action component
   const navigateBack = () => {
     navigation.goBack();
   };
 
 
-// Define BackAction component for the TopNavigation component
+// Renders top navigation action
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
   );
@@ -54,7 +42,6 @@ const CardScreen = ({navigation, route}: CardScreenProps) => {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-
         >
           <Marker
             coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
@@ -62,26 +49,10 @@ const CardScreen = ({navigation, route}: CardScreenProps) => {
             description="Marker Description"
           />
         </MapView>
-        <PanGestureHandler onGestureEvent={onGestureEvent}>
-          <Animated.View
-           style={{
-            transform: [
-              {
-                translateY: translateY,
-              },
-            ],
-            backgroundColor: 'blue',
-            width: 400,
-            height: 100,
-          }}
-          >
+        <BottomSheetComponent>
+           <Text>Content goes here</Text>
+         </BottomSheetComponent>
 
-            <Animated.Text>"Drag it or touch it to scaled it up"</Animated.Text>
-
-
-
-        </Animated.View>
-        </PanGestureHandler>
       </View>
     </React.Fragment>
   );
