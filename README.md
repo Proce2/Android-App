@@ -50,7 +50,7 @@ This is an Android app built using React Native. It helps users find and see the
 ## **Roadmap**
 
   - [X] Implement a map view to show the location and status of services.
-  - [] Add features to show the status of the services.
-  - [] Establish a connection to a database for accessing and storing service-related data.
-  - [] Incorporate real-time updates from Telegram to show the latest service statuses.
+  - [ ] Add features to show the status of the services.
+  - [ ] Establish a connection to a database for accessing and storing service-related data.
+  - [ ] Incorporate real-time updates from Telegram to show the latest service statuses.
 
